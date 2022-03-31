@@ -11,10 +11,13 @@ class NavigationModel with ChangeNotifier{
 
   set paginaActual( int valor) {
     _paginaActual = valor;
-    _pageController.animateToPage(
-      valor, 
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.easeOut
+    // _pageController.animateToPage(
+    //   valor, 
+    //   duration: const Duration(milliseconds: 250),
+    //   curve: Curves.easeOut
+    // );
+    _pageController.jumpToPage(
+      valor
     );
     notifyListeners();
   }
