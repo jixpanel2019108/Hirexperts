@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hirexperts/screens/sreens.dart';
-import 'package:provider/provider.dart';
 
-import 'package:hirexperts/models/provider_models/provider_models.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:hirexperts/screens/screens.dart';
 import 'package:hirexperts/widgets/widgets.dart';
+import 'package:hirexperts/models/provider_models/provider_models.dart';
 
 
 class TabsScreen extends StatelessWidget {
@@ -13,9 +15,14 @@ class TabsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => new NavigationModel(),
+      create: (_) => NavigationModel(),
       child: Scaffold(
-        body: _Pages(),
+        body: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder:(context, snapshot){
+            return _Pages();
+          } 
+          ),
         bottomNavigationBar: BottomNavigationBarWidget(),
       ),
       );
@@ -31,7 +38,6 @@ class _Pages extends StatelessWidget {
 
     return PageView(
       controller: navegacionModel.pageController,
-      // physics: const BouncingScrollPhysics(),
       physics: const NeverScrollableScrollPhysics(),
       children: const [
         HomeScreen(),

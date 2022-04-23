@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:hirexperts/models/models.dart';
-import 'package:hirexperts/screens/sreens.dart';
+import 'package:hirexperts/screens/screens.dart';
 
 
 class AppRoutes{
 
-  static const initialRoute = 'tabs';
+  static const initialRoute = 'login';
 
   static final routeOptions = <RouteOption>[
-    // RouteOption(route: 'home', name: 'Home Screen', screen: const HomeScreen(), icon: Icons.home_rounded),
+    RouteOption(route: 'login', name: 'Login Screen', screen: const LoginScreen(), icon: Icons.home_rounded),
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes(){
